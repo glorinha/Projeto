@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"      
+> 
+
+<h:head>
+	<title>Progamer</title>
+</h:head>
+ 
+<body style="background-color: #eee"> 
+
+	<!--  TOOLBAR  -->
+	<div class="card">
+	    <h:form>
+	        <p:toolbar>
+	            <p:toolbarGroup>
+	            	<h1>Progamer</h1>
+	            </p:toolbarGroup>
+	
+	            <p:toolbarGroup align="right">
+	                <p:menuButton value="#{user.email}">
+	                    <p:menuitem value="Profile" action="profile.xhtml" icon="pi pi-user"/>
+	                    <p:menuitem value="Logout" action="#{userBean.logout()}" icon="pi pi-sign-out"/>
+	                </p:menuButton>
+	            </p:toolbarGroup>
+	        </p:toolbar>
+	    </h:form>
+	</div>
+
+	<!-- MENU -->
+	<div class="card">
+		<h:form>
+			<p:tabMenu activeIndex="#{param.i}">
+				<p:menuitem value="Home" outcome="pretty:setups" icon="pi pi-fw pi-home">
+					<f:param name="i" value="0" />
+				</p:menuitem>
+				<p:menuitem value="Setup" outcome="pretty:new-setup" icon="pi pi-fw pi-desktop">
+					<f:param name="i" value="1" />
+				</p:menuitem>
+				<p:menuitem value="Profile" action="profile.xhtml" icon="pi pi-fw pi-user">
+					<f:param name="i" value="2" />
+				</p:menuitem>
+			</p:tabMenu>
+		</h:form>
+	</div>
+	
+	<ui:insert name="content" />
+
+</body> 
+</html>

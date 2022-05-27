@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/_template.xhtml">
+	<ui:define name="content">
+		<link type="text/css" rel="stylesheet" href="css/global.css" />
+
+		<p:messages>
+			<p:autoUpdate />
+		</p:messages>
+		
+		<p:card style="width: 25em; margin: 1em auto" >
+			<f:facet name="header">
+				<img alt="user profile photo"
+					src="#{request.contextPath}#{userBean.loggedUser().imageProfile}" style="margin: 10px auto; width: 100px"/>
+			</f:facet>
+			<f:facet name="title">#{userBean.loggedUser().name}</f:facet>
+			<div class="ui-fluid">
+				<div class="p-field">
+					<p:inputText id="name" type="text" value="#{userBean.loggedUser().name}" disabled="true" class="form-item-spacing">
+					<f:ajax event="blur" render="msg" />
+					</p:inputText>
+				</div>
+				<div class="p-field">
+					<p:inputText id="birthday" type="date" value="#{userBean.loggedUser().birthday}" disabled="true" class="form-item-spacing">
+					<f:ajax event="blur" render="msg" />
+					</p:inputText>
+				</div>
+				<div class="p-field" style="margin-bottom: 5px;">
+					<p:inputText id="email" type="text" value="#{userBean.loggedUser().email}" disabled="true" class="form-item-spacing">
+					<f:ajax event="blur" render="msg" />
+					</p:inputText>
+				</div>
+				
+			</div>
+		</p:card>
+	</ui:define>
+</ui:composition>
+
+
+</html>

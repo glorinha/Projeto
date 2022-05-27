@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head></h:head>
+
+<body style="background-color: #ddd">
+
+	<p:messages id="msg">
+		<p:autoUpdate />
+	</p:messages>
+
+	<!-- FORM -->
+	<h:form enctype="multipart/form-data">
+		<p:card style="width: 25em; margin: 1em auto">
+			<f:facet name="title">Create Account</f:facet>
+
+			<div class="ui-fluid">
+				<div class="p-field">
+					<label for="name">Name</label>
+					<p:inputText id="name" type="text" value="#{userBean.user.name}"
+						required="true" requiredMessage="O nome é obrigatório">
+						<f:ajax event="blur" render="msg" />
+					</p:inputText>
+				</div>
+				<div class="p-field">
+					<label for="birthday">Birthday</label>
+					<p:datePicker id="birthday" value="#{userBean.user.birthday}"
+						required="true"
+						requiredMessage="A data de nascimento é obrigatória">
+						<f:ajax event="blur" render="msg" />
+					</p:datePicker>
+
+				</div>
+				<div class="p-field">
+					<label for="email">E-mail</label>
+					<p:inputText id="email" value="#{userBean.user.email}"
+						required="true" requiredMessage="O e-mail é obrigatório">
+						<f:ajax event="blur" render="msg" />
+					</p:inputText>
+				</div>
+
+				<div class="p-field">
+					<label for="password">Password</label>
+					<p:password id="password" value="#{userBean.user.password}"
+						required="true" requiredMessage="A senha é obrigatória"
+						feedback="true">
+						<f:validateLength minimum="8" maximum="50"></f:validateLength>
+						<f:ajax event="blur" render="msg" />
+					</p:password>
+				</div>
+
+				<div class="p-field">
+					<label for="imageProfile">Image File: </label>
+					<p:fileUpload value="#{userBean.user.imageProfile}" id="imageProfile" mode="simple"
+						skinSimple="true" />
+				</div>
+			</div>
+			<f:facet name="footer">
+				<p:commandButton icon="pi pi-check" value="Save"
+					action="#{userBean.save()}" />
+			</f:facet>
+		</p:card>
+	</h:form>
+
+</body>
+
+
+
+</html>

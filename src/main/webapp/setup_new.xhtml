@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="content">
+		
+		<p:messages id="msg">
+			<p:autoUpdate />
+		</p:messages>
+	
+		<!-- FORM -->
+		<h:form enctype="multipart/form-data">
+			<p:card style="width: 25em; margin: 1em auto">
+				<f:facet name="title">New Setup</f:facet>
+
+				<div class="ui-fluid">
+					<div class="p-field">
+						<label for="name">Name</label>
+						<p:inputText 
+							id="name" 
+							type="text" 
+							value="#{setupBean.setup.name}" 
+							required="true" 
+							requiredMessage="O nome é obrigatório"
+						>
+							<f:ajax event="blur" render="msg"  />
+						</p:inputText>
+					</div>
+					<div class="p-field">
+						<label for="description">Description</label>
+						<p:inputTextarea 
+							id="description"
+							value="#{setupBean.setup.description}"
+							required="true"
+							requiredMessage="A descrição é obrigatória"
+							validatorMessage="A descrição deve ter pelo menos 10 caracteres"
+						 >
+						 	<f:validateLength minimum="10" />
+						 	<f:ajax event="blur" render="msg"  />
+						 </p:inputTextarea>
+						 
+					</div>
+					<div class="p-field">
+						<label for="price">Price</label>
+						<p:inputNumber 
+							id="price" 
+							symbol="R$ " 
+							decimalSeparator=","
+							thousandSeparator="." 
+							value="#{setupBean.setup.price}" 
+							required="true"
+							requiredMessage="O preço é obrigatório"
+							validatorMessage="O preço não pode ser negativo"
+						>
+							<f:validateDoubleRange minimum="0" />
+							<f:ajax event="blur" render="msg"  />
+						</p:inputNumber>
+					</div>
+					
+					<div class="p-field">
+						<label for="image">Image File: </label>
+						<p:fileUpload value="#{setupBean.image}" id="image" mode="simple" skinSimple="true" />
+					</div>
+					
+				</div>
+
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-check" value="Save"
+						action="#{setupBean.save()}" />
+					<p:commandButton icon="pi pi-times" value="Cancel"
+						styleClass="ui-button-secondary" style="margin-left: .5em" />
+				</f:facet>
+			</p:card>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+</html>
